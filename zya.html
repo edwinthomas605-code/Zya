@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Try to Tap 😈</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      font-size: 20px;
+    }
+
+    button {
+      position: absolute;
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      transition: 0.15s;
+      touch-action: manipulation;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Try to tap the button 😄</h1>
+<button id="btn">Tap me 💖</button>
+
+<script>
+  const btn = document.getElementById("btn");
+  let tries = 0;
+
+  function moveButton() {
+    tries++;
+
+    // After some tries, let them win
+    if (tries > 8) {
+      btn.innerText = "Okay okay 😭 tap me now ❤️";
+      btn.style.left = "50%";
+      btn.style.top = "50%";
+      btn.style.transform = "translate(-50%, -50%)";
+      return;
+    }
+
+    const padding = 20;
+    const maxX = window.innerWidth - btn.offsetWidth - padding;
+    const maxY = window.innerHeight - btn.offsetHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+  }
+
+  // Works for both mobile & desktop
+  btn.addEventListener("touchstart", moveButton);
+  btn.addEventListener("mouseover", moveButton);
+
+  btn.addEventListener("click", () => {
+    if (tries > 8) {
+      document.body.innerHTML = `
+        <h1>
+          You got me 😄💖<br><br>
+          I just wanted your attention...<br><br>
+          Wanna go out sometime? 🌙
+        </h1>
+      `;
+    }
+  });
+</script>
+
+</body>
+</html>
